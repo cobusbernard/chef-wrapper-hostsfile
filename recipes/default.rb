@@ -24,7 +24,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-search(:node, "role:consul-server-role AND chef_environment:#{node.chef_environment}", :filter_result => { 'hostname' => ['hostname'], 'ipaddress' => ['ipaddress'] }).each do |result|
+search(:node, "chef_environment:#{node.chef_environment}", :filter_result => { 'hostname' => ['hostname'], 'ipaddress' => ['ipaddress'] }).each do |result|
   hostsfile_entry result['ipaddress'] do
     hostname  result['hostname']
     action    :create_if_missing
